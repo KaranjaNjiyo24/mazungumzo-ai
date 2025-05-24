@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mazungumzo AI - Mental Health Companion</title>
+    
+    <!-- Main CSS files -->
+    <link rel="stylesheet" href="src/styles/main.css">
+    <link rel="stylesheet" href="src/styles/components.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="http://localhost:8000">
+    
+    <!-- Meta tags for PWA and SEO -->
+    <meta name="description" content="Mazungumzo AI - Mental Health Companion for Kenya. Get support in English and Swahili.">
+    <meta name="keywords" content="mental health, Kenya, AI companion, Swahili, English, support">
+    <meta name="theme-color" content="#4CAF50">
+    <meta name="robots" content="noindex, nofollow"> <!-- Demo only -->
+    
+    <!-- Accessibility -->
+    <meta name="color-scheme" content="light">
+</head>
+<body>
+    <!-- Main Application Container -->
+    <div id="app" class="app-container">
+        <!-- Application Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="app-branding">
+                    <h1 class="app-title">
+                        <span class="app-icon">🤝</span>
+                        Mazungumzo AI
+                    </h1>
+                    <p class="app-subtitle">
+                        Your Mental Health Companion • Rafiki wa Afya ya Akili
+                    </p>
+                </div>
+                
+                <!-- Language Toggle will be inserted here -->
+                <div id="language-toggle-container"></div>
+            </div>
+        </header>
+
+        <!-- Stats Bar will be inserted here -->
+        <div id="stats-bar-container"></div>
+
+        <!-- Main Chat Interface -->
+        <main class="chat-main">
+            <!-- Demo Notice -->
+            <div class="demo-notice">
+                <div class="demo-content">
+                    <span class="demo-icon">🚀</span>
+                    <div class="demo-text">
+                        <strong>Hackathon Demo:</strong> 
+                        This is a working prototype of Mazungumzo AI, built for the Cerebras + OpenRouter + Qwen3 hackathon. 
+                        Try asking about mental health support in English or Swahili!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Interface will be inserted here -->
+            <div id="chat-interface-container"></div>
+        </main>
+
+        <!-- Crisis Alert will be inserted here -->
+        <div id="crisis-alert-container"></div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Initializing Mazungumzo AI...</p>
+        </div>
+    </div>
+
+    <!-- Error Boundary -->
+    <div id="error-boundary" class="error-boundary hidden">
+        <div class="error-content">
+            <div class="error-icon">⚠️</div>
+            <h2 class="error-title">Oops! Something went wrong</h2>
+            <p class="error-message">We're having trouble loading Mazungumzo AI. Please refresh the page to try again.</p>
+            <button class="error-reload-btn" onclick="window.location.reload()">
+                🔄 Reload Page
+            </button>
+        </div>
+    </div>
+
+    <!-- Application JavaScript Modules -->
+    <script type="module">
+        import { APIService } from './src/services/api.js';
+        import { MessageFormatter } from './src/services/messageFormatter.js';
+        import { ChatInterface } from './src/components/ChatInterface.js';
+        import { LanguageToggle } from './src/components/LanguageToggle.js';
+        import { StatsBar } from './src/components/StatsBar.js';
+        import { CrisisAlert } from './src/components/CrisisAlert.js';
+
+        // Application configuration
+        const APP_CONFIG = {
+            apiBaseUrl: 'http://localhost:8000/api/v1',
+            userId: 'demo_user_' + Math.random().toString(36).substr(2, 9),
+            defaultLanguage: 'en',
+            enableStats: true,
+            enableCrisisDetection: true,
+            updateInterval: 30000, // 30 seconds
+            debug: true
+        };
+
+        // Global application state
+        class MazungumzoApp {
+            constructor(config) {
+                this.config = config;
+                this.components = {};
+                this.services = {};
+                this.currentLanguage = config.defaultLanguage;
+                this.isInitialized = false;
+                
+                this.init();
+            }
+
+            async init() {
+                try {
+                    this.showLoading(true);
+                    
+                    // Initialize services
+                    await this.initializeServices();
+                    
+                    // Initialize components
+                    await this.initializeComponents();
+                    
+                    // Setup event listeners
+                    this.setupEventListeners();
+                    
+                    // Start the application
+                    await this.startApplication();
+                    
+                    this.isInitialized = true;
+                    this.showLoading(false);
+                    
+                    this.log('✅ Mazungumzo AI initialized successfully');
+                    
+                } catch (error) {
+                    this.handleError('Failed to initialize application', error);
+                }
+            }
+
+            async initializeServices() {
+                this.log('🔧 Initializing services...');
+                
+                // Initialize API service
+                this.services.api = new APIService({
+                    baseUrl: this.config.apiBaseUrl,
+                    timeout: 10000,
+                    retries: 3
+                });
+
+                // Initialize message formatter
+                this.services.messageFormatter = new MessageFormatter({
+                    language: this.currentLanguage
+                });
+
+                // Test API connection
+                const healthCheck = await this.services.api.checkHealth();
+                if (!healthCheck.status === 'healthy') {
+                    throw new Error('Backend API is not healthy');
+                }
+            }
+
+            async initializeComponents() {
+                this.log('🧩 Initializing components...');
+
+                // Initialize Language Toggle
+                this.components.languageToggle = LanguageToggle.create({
+                    defaultLanguage: this.currentLanguage,
+                    onLanguageChange: (newLang, oldLang) => this.handleLanguageChange(newLang, oldLang)
+                });
+                document.getElementById('language-toggle-container').appendChild(
+                    this.components.languageToggle.getElement()
+                );
+
+                // Initialize Stats Bar
+                if (this.config.enableStats) {
+                    this.components.statsBar = StatsBar.create({
+                        apiService: this.services.api,
+                        updateInterval: this.config.updateInterval
+                    });
+                    document.getElementById('stats-bar-container').appendChild(
+                        this.components.statsBar.getElement()
+                    );
+                }
+
+                // Initialize Crisis Alert
+                if (this.config.enableCrisisDetection) {
+                    this.components.crisisAlert = CrisisAlert.create({
+                        language: this.currentLanguage,
+                        onResourceClick: (data) => this.handleCrisisResourceClick(data),
+                        onDismiss: (data) => this.handleCrisisAlertDismiss(data)
+                    });
+                    document.getElementById('crisis-alert-container').appendChild(
+                        this.components.crisisAlert.getElement()
+                    );
+                }
+
+                // Initialize Chat Interface
+                this.components.chatInterface = new ChatInterface({
+                    apiService: this.services.api,
+                    messageFormatter: this.services.messageFormatter,
+                    userId: this.config.userId,
+                    language: this.currentLanguage,
+                    onMessage: (message) => this.handleUserMessage(message),
+                    onCrisisDetected: (crisisData) => this.handleCrisisDetection(crisisData)
+                });
+                document.getElementById('chat-interface-container').appendChild(
+                    this.components.chatInterface.getElement()
+                );
+            }
+
+            setupEventListeners() {
+                this.log('🎧 Setting up event listeners...');
+
+                // Window error handling
+                window.addEventListener('error', (e) => {
+                    this.handleError('JavaScript error', e.error);
+                });
+
+                window.addEventListener('unhandledrejection', (e) => {
+                    this.handleError('Unhandled promise rejection', e.reason);
+                });
+
+                // Keyboard shortcuts
+                document.addEventListener('keydown', (e) => {
+                    // Escape key to close modals/alerts
+                    if (e.key === 'Escape') {
+                        if (this.components.crisisAlert?.isCurrentlyVisible()) {
+                            this.components.crisisAlert.hide();
+                        }
+                    }
+                    
+                    // Ctrl/Cmd + K to focus message input
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                        e.preventDefault();
+                        this.components.chatInterface?.focusInput();
+                    }
+                });
+
+                // Visibility change handling
+                document.addEventListener('visibilitychange', () => {
+                    if (document.hidden) {
+                        this.log('🌙 App went to background');
+                    } else {
+                        this.log('🌞 App came to foreground');
+                        // Refresh stats when app becomes visible
+                        this.components.statsBar?.refreshStats();
+                    }
+                });
+
+                // Network status
+                window.addEventListener('online', () => {
+                    this.log('🌐 Network connection restored');
+                    this.handleNetworkStatusChange(true);
+                });
+
+                window.addEventListener('offline', () => {
+                    this.log('📡 Network connection lost');
+                    this.handleNetworkStatusChange(false);
+                });
+            }
+
+            async startApplication() {
+                this.log('🚀 Starting application...');
+
+                // Show welcome message
+                await this.components.chatInterface.addBotMessage(
+                    this.getWelcomeMessage(),
+                    { isWelcome: true }
+                );
+
+                // Load initial stats
+                if (this.components.statsBar) {
+                    await this.components.statsBar.refreshStats();
+                }
+
+                // Start any background processes
+                this.startBackgroundTasks();
+            }
+
+            getWelcomeMessage() {
+                const messages = {
+                    en: "Hello! I'm Mazungumzo, your mental health companion. I can help you in English or Swahili. How are you feeling today?",
+                    sw: "Hujambo! Mimi ni Mazungumzo, rafiki yako wa kusaidia katika mambo ya afya ya akili. Naweza kukusaidia kwa lugha ya Kiingereza au Kiswahili. Unahisije leo?"
+                };
+                
+                return this.currentLanguage === 'sw' 
+                    ? `${messages.sw}\n\n${messages.en}`
+                    : `${messages.en}\n\n${messages.sw}`;
+            }
+
+            startBackgroundTasks() {
+                // Periodic health checks
+                setInterval(async () => {
+                    if (this.isInitialized) {
+                        try {
+                            await this.services.api.checkHealth();
+                        } catch (error) {
+                            this.log('⚠️ Background health check failed', error);
+                        }
+                    }
+                }, 60000); // Every minute
+            }
+
+            // Event Handlers
+            async handleLanguageChange(newLanguage, oldLanguage) {
+                this.log(`🌍 Language changed: ${oldLanguage} → ${newLanguage}`);
+                
+                this.currentLanguage = newLanguage;
+                
+                // Update all components with new language
+                this.components.chatInterface?.updateLanguage(newLanguage);
+                this.components.crisisAlert?.updateLanguage(newLanguage);
+                this.services.messageFormatter?.updateLanguage(newLanguage);
+                
+                // Show language change confirmation
+                await this.components.chatInterface.addSystemMessage(
+                    newLanguage === 'en' 
+                        ? 'Language changed to English. How can I help you?'
+                        : 'Lugha imebadilishwa kuwa Kiswahili. Ni nini ninaweza kukusaidia?'
+                );
+            }
+
+            async handleUserMessage(messageData) {
+                this.log('💬 User message:', messageData);
+                
+                // Analytics/logging could go here
+                if (this.config.debug) {
+                    console.log('User message sent:', {
+                        userId: this.config.userId,
+                        language: this.currentLanguage,
+                        timestamp: new Date().toISOString(),
+                        messageLength: messageData.message?.length
+                    });
+                }
+            }
+
+            handleCrisisDetection(crisisData) {
+                this.log('🚨 Crisis detected:', crisisData);
+                
+                if (this.components.crisisAlert) {
+                    this.components.crisisAlert.show(crisisData.level || 'medium', crisisData.message);
+                }
+                
+                // Additional crisis handling logic
+                if (crisisData.level === 'high') {
+                    // Could trigger additional alerts or notifications
+                    this.log('⚠️ High-level crisis detected - additional protocols may be needed');
+                }
+            }
+
+            handleCrisisResourceClick(data) {
+                this.log('🏥 Crisis resource clicked:', data);
+                
+                // Analytics tracking
+                if (this.config.debug) {
+                    console.log('Crisis resource accessed:', {
+                        action: data.action,
+                        resourceId: data.resourceId,
+                        resourceName: data.resourceName,
+                        userId: this.config.userId,
+                        timestamp: data.timestamp
+                    });
+                }
+            }
+
+            handleCrisisAlertDismiss(data) {
+                this.log('❌ Crisis alert dismissed:', data);
+            }
+
+            handleNetworkStatusChange(isOnline) {
+                if (isOnline) {
+                    // Re-enable functionality
+                    this.components.chatInterface?.setNetworkStatus(true);
+                    this.components.statsBar?.startAutoUpdate();
+                } else {
+                    // Disable network-dependent functionality
+                    this.components.chatInterface?.setNetworkStatus(false);
+                    this.components.statsBar?.stopAutoUpdate();
+                }
+            }
+
+            // Utility methods
+            showLoading(show) {
+                const overlay = document.getElementById('loading-overlay');
+                if (overlay) {
+                    overlay.classList.toggle('hidden', !show);
+                }
+            }
+
+            handleError(message, error) {
+                console.error(`❌ ${message}:`, error);
+                
+                // Show error boundary
+                const errorBoundary = document.getElementById('error-boundary');
+                const errorMessage = document.querySelector('.error-message');
+                
+                if (errorBoundary && errorMessage) {
+                    errorMessage.textContent = `${message}: ${error?.message || 'Unknown error'}`;
+                    errorBoundary.classList.remove('hidden');
+                }
+                
+                // Hide loading if shown
+                this.showLoading(false);
+            }
+
+            log(message, ...args) {
+                if (this.config.debug) {
+                    console.log(`[Mazungumzo] ${message}`, ...args);
+                }
+            }
+
+            // Public API for external access
+            getComponent(name) {
+                return this.components[name];
+            }
+
+            getService(name) {
+                return this.services[name];
+            }
+
+            getCurrentLanguage() {
+                return this.currentLanguage;
+            }
+
+            async restart() {
+                this.log('🔄 Restarting application...');
+                
+                // Cleanup existing components
+                Object.values(this.components).forEach(component => {
+                    if (component.destroy) {
+                        component.destroy();
+                    }
+                });
+                
+                // Clear containers
+                ['language-toggle-container', 'stats-bar-container', 'chat-interface-container', 'crisis-alert-container'].forEach(id => {
+                    const container = document.getElementById(id);
+                    if (container) {
+                        container.innerHTML = '';
+                    }
+                });
+                
+                // Reinitialize
+                await this.init();
+            }
+        }
+
+        // Initialize the application
+        window.mazungumzoApp = new MazungumzoApp(APP_CONFIG);
+        
+        // Expose for debugging
+        if (APP_CONFIG.debug) {
+            window.debug = {
+                app: window.mazungumzoApp,
+                config: APP_CONFIG,
+                restart: () => window.mazungumzoApp.restart()
+            };
+            console.log('🔍 Debug tools available at window.debug');
+        }
+
+    </script>
+
+    <!-- Service Worker for PWA functionality (future enhancement) -->
+    <script>
+        if ('serviceWorker' in navigator && !window.location.hostname.includes('localhost')) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => console.log('SW registered:', registration))
+                .catch(error => console.log('SW registration failed:', error));
+        }
+    </script>
+</body>
+</html>

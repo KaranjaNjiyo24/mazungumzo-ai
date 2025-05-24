@@ -1,0 +1,18 @@
+{
+    "port": 3000,
+    "host": "localhost",
+    "root": ".",
+    "open": true,
+    "file": "index.html",
+    "wait": 1000,
+    "mount": [["/src", "./src"]],
+    "logLevel": 2,
+    "middleware": [
+        function(req, res, next) {
+            if (req.url.endsWith('.js')) {
+                res.setHeader('Content-Type', 'application/javascript');
+            }
+            next();
+        }
+    ]
+} 

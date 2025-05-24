@@ -1,0 +1,282 @@
+{
+  "demo_user_12345": {
+    "user_id": "demo_user_12345",
+    "created_at": "2025-05-25T01:10:14.801541",
+    "last_active": "2025-05-25T01:10:14.801561",
+    "conversation_history": [
+      {
+        "role": "assistant",
+        "content": "Hujambo! Mimi ni Mazungumzo. Unahisije leo?",
+        "timestamp": "2025-05-25T01:10:14.801563",
+        "language": "sw"
+      }
+    ],
+    "mood_scores": [
+      0
+    ],
+    "crisis_flags": 0,
+    "platform": "web"
+  },
+  "user_1748125164750_waup5juwd": {
+    "user_id": "user_1748125164750_waup5juwd",
+    "created_at": "2025-05-25T01:20:23.271702",
+    "last_active": "2025-05-25T01:22:32.159120",
+    "conversation_history": [
+      {
+        "role": "user",
+        "content": "Hujambo mazungumzo nina msongo wa mawazo",
+        "timestamp": "2025-05-25T01:20:23.273297",
+        "language": "en"
+      },
+      {
+        "role": "assistant",
+        "content": "I understand you're feeling this way. Let's talk about it more.",
+        "timestamp": "2025-05-25T01:20:23.947942",
+        "language": "en"
+      },
+      {
+        "role": "user",
+        "content": "Hujambo mazungumzo nina msong wa mawazo utanisaidiaje?",
+        "timestamp": "2025-05-25T01:20:52.804149",
+        "language": "sw"
+      },
+      {
+        "role": "assistant",
+        "content": "I understand you're feeling this way. Let's talk about it more.",
+        "timestamp": "2025-05-25T01:20:52.828154",
+        "language": "sw"
+      },
+      {
+        "role": "user",
+        "content": "Hi",
+        "timestamp": "2025-05-25T01:20:59.815012",
+        "language": "sw"
+      },
+      {
+        "role": "assistant",
+        "content": "I understand you're feeling this way. Let's talk about it more.",
+        "timestamp": "2025-05-25T01:20:59.827803",
+        "language": "sw"
+      },
+      {
+        "role": "user",
+        "content": "Habari yako",
+        "timestamp": "2025-05-25T01:22:32.093360",
+        "language": "sw"
+      },
+      {
+        "role": "assistant",
+        "content": "I understand you're feeling this way. Let's talk about it more.",
+        "timestamp": "2025-05-25T01:22:32.159092",
+        "language": "sw"
+      }
+    ],
+    "mood_scores": [],
+    "crisis_flags": 0,
+    "platform": "web"
+  },
+  "user_1748125708055_b4kcvlm79": {
+    "user_id": "user_1748125708055_b4kcvlm79",
+    "created_at": "2025-05-25T01:29:00.446283",
+    "last_active": "2025-05-25T01:33:03.051030",
+    "conversation_history": [
+      {
+        "role": "user",
+        "content": "Nina msongo wa mawazo",
+        "timestamp": "2025-05-25T01:29:00.447553",
+        "language": "en"
+      },
+      {
+        "role": "assistant",
+        "content": "I understand you're feeling this way. Let's talk about it more.",
+        "timestamp": "2025-05-25T01:29:00.464413",
+        "language": "en"
+      },
+      {
+        "role": "user",
+        "content": "Hi",
+        "timestamp": "2025-05-25T01:33:03.032120",
+        "language": "en"
+      },
+      {
+        "role": "assistant",
+        "content": "I understand you're feeling this way. Let's talk about it more.",
+        "timestamp": "2025-05-25T01:33:03.051009",
+        "language": "en"
+      }
+    ],
+    "mood_scores": [],
+    "crisis_flags": 0,
+    "platform": "web"
+  },
+  "user_1748125994264_vbxk2vr5t": {
+    "user_id": "user_1748125994264_vbxk2vr5t",
+    "created_at": "2025-05-25T01:33:23.036427",
+    "last_active": "2025-05-25T01:33:23.083973",
+    "conversation_history": [
+      {
+        "role": "user",
+        "content": "Mazungumzo",
+        "timestamp": "2025-05-25T01:33:23.037844",
+        "language": "sw"
+      },
+      {
+        "role": "assistant",
+        "content": "I understand you're feeling this way. Let's talk about it more.",
+        "timestamp": "2025-05-25T01:33:23.083944",
+        "language": "sw"
+      }
+    ],
+    "mood_scores": [],
+    "crisis_flags": 0,
+    "platform": "web"
+  },
+  "user_1748126213077_4mfnd7pzd": {
+    "user_id": "user_1748126213077_4mfnd7pzd",
+    "created_at": "2025-05-25T01:37:05.586472",
+    "last_active": "2025-05-25T01:37:05.589901",
+    "conversation_history": [
+      {
+        "role": "user",
+        "content": "Mazungumzo hujambo?",
+        "timestamp": "2025-05-25T01:37:05.589862",
+        "language": "en"
+      }
+    ],
+    "mood_scores": [],
+    "crisis_flags": 0,
+    "platform": "web"
+  },
+  "user_1748126237482_0qfnvynvn": {
+    "user_id": "user_1748126237482_0qfnvynvn",
+    "created_at": "2025-05-25T01:37:20.903923",
+    "last_active": "2025-05-25T01:37:20.905458",
+    "conversation_history": [
+      {
+        "role": "user",
+        "content": "Hello",
+        "timestamp": "2025-05-25T01:37:20.905438",
+        "language": "en"
+      }
+    ],
+    "mood_scores": [],
+    "crisis_flags": 0,
+    "platform": "web"
+  },
+  "user_1748126314220_pz4d99qze": {
+    "user_id": "user_1748126314220_pz4d99qze",
+    "created_at": "2025-05-25T01:38:52.087591",
+    "last_active": "2025-05-25T01:38:58.526363",
+    "conversation_history": [
+      {
+        "role": "user",
+        "content": "Hello Mazungumzo",
+        "timestamp": "2025-05-25T01:38:52.088831",
+        "language": "en"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "2025-05-25T01:38:58.526348",
+        "language": "en"
+      }
+    ],
+    "mood_scores": [],
+    "crisis_flags": 0,
+    "platform": "web"
+  },
+  "user_1748126382911_r8lztscwj": {
+    "user_id": "user_1748126382911_r8lztscwj",
+    "created_at": "2025-05-25T01:39:52.432817",
+    "last_active": "2025-05-25T01:39:52.433943",
+    "conversation_history": [
+      {
+        "role": "user",
+        "content": "Hi mazungumzo",
+        "timestamp": "2025-05-25T01:39:52.433925",
+        "language": "en"
+      }
+    ],
+    "mood_scores": [],
+    "crisis_flags": 0,
+    "platform": "web"
+  },
+  "user_1748126472876_k6d53ddpo": {
+    "user_id": "user_1748126472876_k6d53ddpo",
+    "created_at": "2025-05-25T01:41:18.524897",
+    "last_active": "2025-05-25T01:41:20.425497",
+    "conversation_history": [
+      {
+        "role": "user",
+        "content": "Hello",
+        "timestamp": "2025-05-25T01:41:18.526670",
+        "language": "sw"
+      },
+      {
+        "role": "assistant",
+        "content": "<think>\nOkay, the user said \"Hello\" again. Maybe they're testing or just being friendly. I should respond warmly in both languages to show I'm attentive. Let me start with a cheerful greeting in Swahili first since it's common in Kenya, then add English. Keep it friendly and open-ended to encourage them to share more. Make sure the emoji is friendly too.\n</think>\n\nJambo! 👋 Mara nyingi, uzuri wangu, hajambo? Kama unahitaji kutoa mazungumzo, kusikiliza, au kusaidia kupata njia ya kujifunika, nataka kusaidia. Unaweza kuchangia kwa Kiingereza au Kislai!",
+        "timestamp": "2025-05-25T01:41:20.425469",
+        "language": "sw"
+      }
+    ],
+    "mood_scores": [],
+    "crisis_flags": 0,
+    "platform": "web"
+  },
+  "user_1748126495919_xrng9t2rz": {
+    "user_id": "user_1748126495919_xrng9t2rz",
+    "created_at": "2025-05-25T01:41:56.900008",
+    "last_active": "2025-05-25T01:42:40.099167",
+    "conversation_history": [
+      {
+        "role": "user",
+        "content": "Hujambo mazungumzo, nina msongo wa mawazo",
+        "timestamp": "2025-05-25T01:41:56.903818",
+        "language": "sw"
+      },
+      {
+        "role": "assistant",
+        "content": "<think>\nOkay, the user is saying \"Hujambo mazungumzo, nina msongo wa mawazo.\" Let me break this down. \"Hujambo\" is a Swahili greeting, similar to \"Hello\" or \"Hi.\" \"Mazungumzo\" means \"conversations\" or \"discussions,\" but in this context, it's likely the user is addressing me by name. The second part, \"nina msongo wa mawazo,\" translates to \"I have a burden of thoughts.\"\n\nSo the user is greeting me and expressing that they have a heavy burden of thoughts, which in a mental health context could indicate stress, anxiety, or feeling overwhelmed. Since the message is in Swahili, I should respond in Swahili to maintain the language preference. I need to acknowledge their greeting, validate their feelings, and offer support. It's important to be empathetic and encourage them to share more if they're comfortable",
+        "timestamp": "2025-05-25T01:41:58.551042",
+        "language": "sw"
+      },
+      {
+        "role": "user",
+        "content": "Utanisaidiaje?",
+        "timestamp": "2025-05-25T01:42:39.077903",
+        "language": "sw"
+      },
+      {
+        "role": "assistant",
+        "content": "<think>\nOkay, the user is asking \"Utanisaidiaje?\" which means \"Will you help me?\" in Swahili. Since the previous messages were in Swahili, I should continue in that language to maintain consistency. I need to respond with empathy and reassurance. Let me start by acknowledging their question and offering support. I should ask them to share more about their thoughts so I can assist better. Also, maybe suggest some relaxation techniques in a culturally appropriate way. Use simple Swahili phrases to keep it conversational and comforting. Make sure the tone is warm and understanding. Avoid any technical jargon. Check for any possible misunderstandings. Alright, time to put that into a response.\n</think>\n\nNdiyo, nitasaidia! Nikumbuke kwamba mawazo yenye msongo yanaweza kuwa na ujumbe mkubwa, na sitafikiria kuwa sio wewe mwenyewe. Je",
+        "timestamp": "2025-05-25T01:42:40.099156",
+        "language": "sw"
+      }
+    ],
+    "mood_scores": [],
+    "crisis_flags": 0,
+    "platform": "web"
+  },
+  "user_1748126609423_kkeai6lq1": {
+    "user_id": "user_1748126609423_kkeai6lq1",
+    "created_at": "2025-05-25T01:43:40.809526",
+    "last_active": "2025-05-25T01:43:42.287259",
+    "conversation_history": [
+      {
+        "role": "user",
+        "content": "Hello mazungumzo, I need to talk",
+        "timestamp": "2025-05-25T01:43:40.810722",
+        "language": "en"
+      },
+      {
+        "role": "assistant",
+        "content": "<think>\nOkay, the user just said \"Hello mazungumzo, I need to talk\" again. I need to respond appropriately. Since they're using my name, I should acknowledge them by name. But wait, the previous message was the same as the current one. Maybe they're testing or just started the conversation. I should keep it friendly and open.\n\nI should start with a greeting in Swahili to be culturally sensitive. \"Habari yako?\" is a common way to ask how they're doing. Then, offer support and let them know I'm here to listen. Keep the tone warm and empathetic. Maybe add an emoji to show approachability. Also, remind them that I'm here to help with whatever they're feeling. Need to make sure the response is concise but meaningful, under 200 words. Avoid any medical advice, just emotional support. Check for any cultural nuances and make sure the response is respectful and understanding of Kenyan context",
+        "timestamp": "2025-05-25T01:43:42.287245",
+        "language": "en"
+      }
+    ],
+    "mood_scores": [],
+    "crisis_flags": 0,
+    "platform": "web"
+  }
+}

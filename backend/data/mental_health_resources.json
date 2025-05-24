@@ -1,0 +1,49 @@
+{
+  "crisis_hotlines": [
+    {
+      "name": "Kenya Red Cross",
+      "number": "1199",
+      "description": "24/7 crisis support line",
+      "language": "English/Swahili"
+    },
+    {
+      "name": "Befrienders Kenya",
+      "number": "+254 722 178 177",
+      "description": "Suicide prevention hotline",
+      "language": "English/Swahili"
+    }
+  ],
+  "hospitals": [
+    {
+      "name": "Mathari National Teaching & Referral Hospital",
+      "location": "Nairobi",
+      "phone": "+254 20 2723841",
+      "services": "Psychiatric services, counseling"
+    },
+    {
+      "name": "Nairobi Hospital - Mental Health Unit",
+      "location": "Nairobi",
+      "phone": "+254 719 055555",
+      "services": "Private psychiatric care"
+    }
+  ],
+  "online_resources": [
+    {
+      "name": "Kenya Association of Professional Counsellors",
+      "website": "kapc.or.ke",
+      "description": "Find certified counsellors"
+    },
+    {
+      "name": "Mental Health Kenya",
+      "website": "mentalhealthkenya.org",
+      "description": "Mental health awareness and resources"
+    }
+  ],
+  "support_groups": [
+    {
+      "name": "Nairobi Mental Health Support Groups",
+      "location": "Various locations in Nairobi",
+      "contact": "Contact through Mental Health Kenya"
+    }
+  ]
+}

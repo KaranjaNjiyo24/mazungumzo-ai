@@ -1,0 +1,19 @@
+{
+  "total_users": 11,
+  "total_conversations": 1,
+  "total_messages": 28,
+  "crisis_interventions": 0,
+  "languages_used": {
+    "english": 0,
+    "swahili": 1,
+    "en": 13,
+    "sw": 14
+  },
+  "platforms": {
+    "web": 1,
+    "whatsapp": 0,
+    "sms": 0
+  },
+  "daily_stats": {},
+  "last_updated": "2025-05-25T01:43:42.289994"
+}
